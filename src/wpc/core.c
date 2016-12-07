@@ -743,6 +743,7 @@ void video_update_core_dmd(struct mame_bitmap *bitmap, const struct rectangle *c
   int ii, jj;
 
 #ifdef VPINMAME
+  char *ptr;
   static UINT8 buffer1[DMD_MAXY*DMD_MAXX];
   static UINT8 buffer2[DMD_MAXY*DMD_MAXX];
   static UINT8 *currbuffer = buffer1;
@@ -900,7 +901,7 @@ void video_update_core_dmd(struct mame_bitmap *bitmap, const struct rectangle *c
 			const HINSTANCE hInst = GetModuleHandle("VPinMAME64.dll");
 #endif
 			GetModuleFileName(hInst, DumpFilename, MAX_PATH);
-			char *ptr = strrchr(DumpFilename, '\\');
+			ptr = strrchr(DumpFilename, '\\');
 			strcpy_s(ptr + 1, 11, "DmdDump\\");
 			strcat_s(DumpFilename, MAX_PATH, Machine->gamedrv->name);
 			strcat_s(DumpFilename, MAX_PATH, ".txt");
